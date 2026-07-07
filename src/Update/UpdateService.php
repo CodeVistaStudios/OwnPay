@@ -146,23 +146,8 @@ EOT;
                 return ['available' => false, 'error' => 'invalid_response'];
             }
 
-            $latestVersion = null;
-            $downloadUrl = null;
-            $changelog = null;
-            $checksum = null;
-
-            $channels = $data['channels'] ?? null;
-            if (is_array($channels) && isset($channels['stable']) && is_array($channels['stable'])) {
-                $stable = $channels['stable'];
-                $latestVersion = is_string($stable['latest_version_name'] ?? null) ? $stable['latest_version_name'] : null;
-                $downloadUrl = is_string($stable['download_url'] ?? null) ? $stable['download_url'] : null;
-                $changelog = is_string($stable['changelog'] ?? null) ? $stable['changelog'] : null;
-                $checksum = is_string($stable['checksum_sha256'] ?? null) ? $stable['checksum_sha256'] : null;
-            } else {
-                $latestVersion = is_string($data['version'] ?? null) ? $data['version'] : null;
-                $downloadUrl = is_string($data['download_url'] ?? null) ? $data['download_url'] : null;
-                $changelog = is_string($data['changelog'] ?? null) ? $data['changelog'] : null;
-            }
+            ['version' => $latestVersion, 'url' => $downloadUrl, 'changelog' => $changelog, 'checksum' => $checksum]
+                = $this->resolveManifestFields($data);
 
             if ($latestVersion === null) {
                 return ['available' => false, 'error' => 'invalid_response'];
@@ -191,6 +176,48 @@ EOT;
         } catch (\Throwable $e) {
             return ['available' => false, 'error' => 'connection_failed', 'message' => $e->getMessage()];
         }
+    }
+
+    /**
+     * Extracts the latest-version fields from a decoded manifest response.
+     *
+     * Prefers the 'stable' channel but falls back to 'beta' - pre-1.0 releases
+     * are only ever published to the beta channel, so requiring 'stable' made
+     * check() fail with invalid_response until a stable channel exists on the
+     * update server. Falls back further to top-level fields for manifests
+     * published without a 'channels' section at all.
+     *
+     * @param array<mixed, mixed> $data Decoded manifest JSON.
+     * @return array{version: string|null, url: string|null, changelog: string|null, checksum: string|null}
+     */
+    private function resolveManifestFields(array $data): array
+    {
+        $channels = $data['channels'] ?? null;
+        $channel = null;
+        if (is_array($channels)) {
+            foreach (['stable', 'beta'] as $channelName) {
+                if (isset($channels[$channelName]) && is_array($channels[$channelName])) {
+                    $channel = $channels[$channelName];
+                    break;
+                }
+            }
+        }
+
+        if ($channel !== null) {
+            return [
+                'version'   => is_string($channel['latest_version_name'] ?? null) ? $channel['latest_version_name'] : null,
+                'url'       => is_string($channel['download_url'] ?? null) ? $channel['download_url'] : null,
+                'changelog' => is_string($channel['changelog'] ?? null) ? $channel['changelog'] : null,
+                'checksum'  => is_string($channel['checksum_sha256'] ?? null) ? $channel['checksum_sha256'] : null,
+            ];
+        }
+
+        return [
+            'version'   => is_string($data['version'] ?? null) ? $data['version'] : null,
+            'url'       => is_string($data['download_url'] ?? null) ? $data['download_url'] : null,
+            'changelog' => is_string($data['changelog'] ?? null) ? $data['changelog'] : null,
+            'checksum'  => null,
+        ];
     }
 
     /**
