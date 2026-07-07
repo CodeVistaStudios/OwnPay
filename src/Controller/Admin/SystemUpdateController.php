@@ -180,7 +180,10 @@ final class SystemUpdateController
         try {
             $result = $this->updater->check();
             if (!empty($result['error'])) {
-                $this->session->flashError('Unable to reach update server. ' . ($result['message'] ?? 'Check your internet connection and try again.'));
+                $errorMessage = $result['error'] === 'connection_failed'
+                    ? 'Unable to reach update server. ' . ($result['message'] ?? 'Check your internet connection and try again.')
+                    : 'Update server returned an unexpected response. Please try again later.';
+                $this->session->flashError($errorMessage);
             } elseif ($result['available']) {
                 $cacheFile = dirname(__DIR__, 3) . '/storage/cache/update_check.json';
                 @file_put_contents($cacheFile, json_encode($result));

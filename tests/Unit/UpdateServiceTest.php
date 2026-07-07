@@ -327,6 +327,66 @@ class UpdateServiceTest extends TestCase
         }
     }
 
+    /** @param array<mixed, mixed> $data */
+    private function resolveManifestFields(array $data): array
+    {
+        $method = new \ReflectionMethod(UpdateService::class, 'resolveManifestFields');
+        /** @var array<string, mixed> $result */
+        $result = $method->invoke($this->createUpdateService(), $data);
+        return $result;
+    }
+
+    public function testResolveManifestFieldsPrefersStableChannel(): void
+    {
+        $fields = $this->resolveManifestFields([
+            'channels' => [
+                'stable' => ['latest_version_name' => '1.0.0', 'download_url' => 'https://example.com/1.0.0.zip'],
+                'beta'   => ['latest_version_name' => '1.1.0-beta', 'download_url' => 'https://example.com/1.1.0-beta.zip'],
+            ],
+        ]);
+
+        $this->assertSame('1.0.0', $fields['version']);
+        $this->assertSame('https://example.com/1.0.0.zip', $fields['url']);
+    }
+
+    public function testResolveManifestFieldsFallsBackToBetaWhenStableIsAbsent(): void
+    {
+        $fields = $this->resolveManifestFields([
+            'channels' => [
+                'beta' => [
+                    'latest_version_name' => '0.2.0',
+                    'download_url' => 'https://example.com/0.2.0.zip',
+                    'changelog' => 'Some changes',
+                    'checksum_sha256' => 'abc123',
+                ],
+            ],
+        ]);
+
+        $this->assertSame('0.2.0', $fields['version']);
+        $this->assertSame('https://example.com/0.2.0.zip', $fields['url']);
+        $this->assertSame('Some changes', $fields['changelog']);
+        $this->assertSame('abc123', $fields['checksum']);
+    }
+
+    public function testResolveManifestFieldsFallsBackToTopLevelWhenNoChannelsPresent(): void
+    {
+        $fields = $this->resolveManifestFields([
+            'version' => '2.0.0',
+            'download_url' => 'https://example.com/2.0.0.zip',
+        ]);
+
+        $this->assertSame('2.0.0', $fields['version']);
+        $this->assertSame('https://example.com/2.0.0.zip', $fields['url']);
+    }
+
+    public function testResolveManifestFieldsReturnsNullVersionWhenNothingMatches(): void
+    {
+        $fields = $this->resolveManifestFields(['unrelated' => 'data']);
+
+        $this->assertNull($fields['version']);
+        $this->assertNull($fields['url']);
+    }
+
     public function testPurgeOldLogsIsANoOpWhenDirectoryIsMissing(): void
     {
         $updater = $this->createUpdateService();
