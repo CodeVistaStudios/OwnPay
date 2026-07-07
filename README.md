@@ -1,9 +1,9 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="https://github.com/own-pay/.github/raw/main/profile/assets/ownpay-with-bg.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/own-pay/.github/raw/main/profile/assets/logo-png.png">
-  <img src="https://github.com/own-pay/.github/raw/main/profile/assets/ownpay-with-bg.png" height="104" alt="OwnPay" />
+  <source media="(prefers-color-scheme: dark)"  srcset="https://github.com/own-pay/.github/raw/main/profile/assets/ownpay-white-logo.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/own-pay/.github/raw/main/profile/assets/ownpay-dark-logo.svg">
+  <img src="https://github.com/own-pay/.github/raw/main/profile/assets/ownpay-with-bg.png" height="100" alt="OwnPayLogo" />
 </picture>
 
 ### Your Gateway. Your Server. Your Rules.
@@ -14,7 +14,7 @@
 
 <br />
 
-[![Release](https://img.shields.io/badge/Public%20Beta-v0.1.0-22C55E?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/own-pay/OwnPay/releases/latest)
+[![Release](https://img.shields.io/badge/Public%20Beta-v0.2.0-22C55E?style=for-the-badge&logo=rocket&logoColor=white)](https://github.com/own-pay/OwnPay/releases/latest)
 [![License](https://img.shields.io/badge/License-AGPL%20v3.0-3B82F6?style=for-the-badge)](LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-FF6B6B?style=for-the-badge)](CONTRIBUTING.md)
@@ -30,7 +30,7 @@
 
 <br />
 
-[![Download v0.1.0 Beta](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20Download%20v0.1.0%20Beta-0066FF?style=for-the-badge&logo=github&logoColor=white)](https://github.com/own-pay/OwnPay/releases/latest)&nbsp;&nbsp;
+[![Download v0.2.0 Beta](https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20Download%20v0.2.0%20Beta-0066FF?style=for-the-badge&logo=github&logoColor=white)](https://github.com/own-pay/OwnPay/releases/latest)&nbsp;&nbsp;
 [![Deploy Guide](https://img.shields.io/badge/%F0%9F%9A%80%20Deploy%20to%20Your%20Server-111111?style=for-the-badge)](#-deploy-to-your-server)&nbsp;&nbsp;
 [![Star this repo](https://img.shields.io/badge/%E2%AD%90%20Star%20this%20repo-111111?style=for-the-badge&logo=github&logoColor=white)](https://github.com/own-pay/OwnPay)
 
@@ -47,7 +47,7 @@
 <br />
 
 > [!NOTE]
-> **OwnPay is in Public Beta (v0.1.0).** It's stable, hardened (PHPStan level 9 + automated test suite), and ready to self-host today. We're gathering real-world feedback on the road to `1.0` — [tell us what you find](https://github.com/own-pay/OwnPay/issues).
+> **OwnPay is in Public Beta (v0.2.0).** It's stable, hardened (PHPStan level 9 + automated test suite), and ready to self-host today. We're gathering real-world feedback on the road to `1.0` — [tell us what you find](https://github.com/own-pay/OwnPay/issues).
 
 ---
 
