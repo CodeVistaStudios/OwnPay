@@ -26,7 +26,7 @@
 
 <br />
 
-[**🌐 Website**](https://ownpay.org) &nbsp;·&nbsp; [**📖 Docs**](https://docs.ownpay.org) &nbsp;·&nbsp; [**🎓 Learn**](https://learn.ownpay.org) &nbsp;·&nbsp; [**🧩 Plugins**](https://plugin.ownpay.org) &nbsp;·&nbsp; [**📰 Blog**](https://blog.ownpay.org) &nbsp;·&nbsp; [**▶️ Demo**](https://demo.ownpay.org)
+[**🌐 Website**](https://ownpay.org) &nbsp;·&nbsp; [**📖 API Reference**](https://docs.ownpay.org) &nbsp;·&nbsp; [**🎓 Docs**](https://ownpay.org/docs) &nbsp;·&nbsp; [**🧩 Plugins**](https://plugins.ownpay.org) &nbsp;·&nbsp; [**📰 Blog**](https://blog.ownpay.org) &nbsp;·&nbsp; [**▶️ Demo**](https://demo.ownpay.org/login)
 
 <br />
 
@@ -155,7 +155,7 @@ AGPL-3.0 licensed and free forever. Transparent, auditable, and shaped by the co
 </tr>
 </table>
 
-<div align="center"><sub>Browse the full gateway & add-on catalog at <a href="https://plugin.ownpay.org">plugin.ownpay.org</a>.</sub></div>
+<div align="center"><sub>Browse the full gateway & add-on catalog at <a href="https://plugins.ownpay.org">plugin.ownpay.org</a>.</sub></div>
 
 ---
 
@@ -299,8 +299,8 @@ composer lint       # Twig + JS + CSS
 |:---|:---|:---|
 | 🌐 **Website** | [ownpay.org](https://ownpay.org) | Product overview & download |
 | 📖 **Developer Docs / API** | [docs.ownpay.org](https://docs.ownpay.org) | REST API reference |
-| 🎓 **Learn / Guides** | [learn.ownpay.org](https://learn.ownpay.org) | Step-by-step tutorials, how-tos, deployment & integration |
-| 🧩 **Plugins** | [plugin.ownpay.org](https://plugin.ownpay.org) | Gateway & plugins catalog |
+| 🎓 **Learn / Guides** | [learn.ownpay.org](https://ownpay.org/docs) | Step-by-step tutorials, how-tos, deployment & integration |
+| 🧩 **Plugins** | [plugin.ownpay.org](https://plugins.ownpay.org) | Gateway & plugins catalog |
 | 📰 **Blog & Updates** | [blog.ownpay.org](https://blog.ownpay.org) | Releases, changelog & announcements |
 | ▶️ **Live Demo** | [demo.ownpay.org](https://demo.ownpay.org) | Try it without installing |
 
@@ -346,7 +346,7 @@ Yes. The release archive bundles all dependencies, so no SSH or Composer is need
 <summary><b>How do I add a new payment gateway?</b></summary>
 <br />
 
-Gateways are plugins. Add a directory under <code>modules/gateways/&lt;slug&gt;/</code> with a <code>manifest.json</code> and an adapter implementing <code>GatewayAdapterInterface</code>. See the gateway guide on <a href="https://plugin.ownpay.org">plugin.ownpay.org</a> and the architecture overview in <a href="docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a>.
+Gateways are plugins. Add a directory under <code>modules/gateways/&lt;slug&gt;/</code> with a <code>manifest.json</code> and an adapter implementing <code>GatewayAdapterInterface</code>. See the gateway guide on <a href="https://plugins.ownpay.org">plugin.ownpay.org</a> and the architecture overview in <a href="docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a>.
 
 </details>
 
@@ -435,7 +435,7 @@ OwnPay is shipping toward a stable **1.0**. Highlights on the horizon: a public 
 
 [![Website](https://img.shields.io/badge/Website-ownpay.org-0066FF?style=for-the-badge)](https://ownpay.org)&nbsp;
 [![Docs](https://img.shields.io/badge/Docs-docs.ownpay.org-0066FF?style=for-the-badge)](https://docs.ownpay.org)&nbsp;
-[![Learn](https://img.shields.io/badge/Learn-learn.ownpay.org-0066FF?style=for-the-badge)](https://learn.ownpay.org)&nbsp;
+[![Learn](https://img.shields.io/badge/Learn-learn.ownpay.org-0066FF?style=for-the-badge)](https://ownpay.org/docs)&nbsp;
 [![Blog](https://img.shields.io/badge/Blog-blog.ownpay.org-0066FF?style=for-the-badge)](https://blog.ownpay.org)
 
 [![Facebook Page](https://img.shields.io/badge/Facebook-Page-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/ownpay.org)&nbsp;
@@ -489,8 +489,8 @@ The core platform is, and will always remain, free and open source.
 <sub>
 <a href="https://ownpay.org">ownpay.org</a> &nbsp;·&nbsp;
 <a href="https://docs.ownpay.org">docs</a> &nbsp;·&nbsp;
-<a href="https://learn.ownpay.org">learn</a> &nbsp;·&nbsp;
-<a href="https://plugin.ownpay.org">plugins</a> &nbsp;·&nbsp;
+<a href="https://ownpay.org/docs">learn</a> &nbsp;·&nbsp;
+<a href="https://plugins.ownpay.org">plugins</a> &nbsp;·&nbsp;
 <a href="https://blog.ownpay.org">blog</a> &nbsp;·&nbsp;
 <a href="https://demo.ownpay.org">demo</a> &nbsp;·&nbsp;
 <a href="mailto:ping@ownpay.org">ping@ownpay.org</a>
